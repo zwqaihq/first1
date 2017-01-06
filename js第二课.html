@@ -1,9 +1,9 @@
-//对象：everything is object
-//js有三种类型的对象
-//1.内置对象
-//2.dom对象（document object mode）￥￥；
-//3.自定义对象   var person=new object()；
-//this 是对当前对象的引用 只能用在function（）中
+<!--//对象：everything is object-->
+<!--//js有三种类型的对象-->
+<!--//1.内置对象-->
+<!--//2.dom对象（document object mode）￥￥；-->
+<!--//3.自定义对象   var person=new object()；-->
+<!--//this 是对当前对象的引用 只能用在function（）中-->
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -15,11 +15,80 @@
             padding: 0;
         }
         ul{
-
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        #menu{
+            height: 30px;
+        }
+        #menu .main-menu{
+            width: 120px;
+            height: 30px;
+            float: left;
+            margin-right: 5px;
+            background: #cccccc;
+            position: relative;
+        }
+        #menu .main-menu-link{
+            height: 100%;
+            display: block;
+            line-height: 30px;
+        }
+        #menu .sub-menu{
+            position: absolute;
+            left: 0;
+            top: 30px;
+            display: none;
         }
     </style>
 </head>
 <body>
-
+    <ul id="menu">
+        <li class="main-menu">
+            <a href="#" class="main-menu-link">link 1</a>
+            <ul class="sub-menu">
+                <li><a href="#">sublink 1</a></li>
+                <li><a href="#">sublink 2</a></li>
+                <li><a href="#">sublink 3</a></li>
+                <li><a href="#">sublink 4</a></li>
+            </ul>
+        </li>
+        <li class="main-menu">
+            <a href="#" class="main-menu-link">link 2</a>
+            <ul class="sub-menu">
+                <li><a href="#">sublink 1</a></li>
+                <li><a href="#">sublink 2</a></li>
+                <li><a href="#">sublink 3</a></li>
+                <li><a href="#">sublink 4</a></li>
+            </ul>
+        </li>
+        <li class="main-menu">
+            <a href="#" class="main-menu-link">link 3</a>
+            <ul class="sub-menu">
+                <li><a href="#">sublink 1</a></li>
+                <li><a href="#">sublink 2</a></li>
+                <li><a href="#">sublink 3</a></li>
+                <li><a href="#">sublink 4</a></li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        var oMenu = document.getElementById('menu');
+        var aLi = oMenu.getElementsByTagName('li');
+        for(var i=0; i<aLi.length; i++){
+            if(aLi[i].className == 'main-menu'){
+                aLi[i].onmouseover = function(){
+                    var oSubMenu = this.getElementsByTagName('ul')[0];
+                    oSubMenu.style.display = 'block';
+                };
+                aLi[i].onmouseout = function () {
+                    var oSubMenu = this.getElementsByTagName('ul')[0];//[ul]
+                    oSubMenu.style.display = 'none';
+                }
+            }
+        }
+    </script>
 </body>
 </html>
