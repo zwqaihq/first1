@@ -15,7 +15,7 @@
         #menu li{
             width: 120px;
             height: 30px;
-            background: #cccccc;
+            background: #00f;
             float: left;
             margin-right: 10px;
             text-align: center;
@@ -70,7 +70,7 @@
     var oContent = document.getElementById("content");
     var aDiv = oContent.getElementsByTagName("div");
     for(var i=0; i<aLi.length; i++){
-        aLi[i].index = i;//给每个li对象自定义属性index，作用是保存住当时的i值，其实就是索引
+        aLi[i].index = i;
         aLi[i].onclick = function(){
             for(var i=0; i<aLi.length; i++){
                 aLi[i].className = "";
