@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+       #img1{
+           position:absolute;
+           top: 0;
+           left: 0;
+           cursor: pointer;
+       }
+        #img2{
+            position: relative;
+            left: 410px;
+        }
+    </style>
+</head>
+<body>
+    <div id="imgs">
+        <img id="img1" src="img/6.jpg" />
+        <img id="img2" src="img/5.jpg" />
+    </div>
+<script>
+    var oImg1 = document.getElementById(img1);
+    var oImg2 = document.getElementById(img2);
+//    oImg1.onmousemove = function(){
+//        oImg1.style.displiy='block;'
+    }
+</script>
+</body>
+</html>
