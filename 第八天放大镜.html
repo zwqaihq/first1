@@ -8,28 +8,108 @@
             margin: 0;
             padding: 0;
         }
-       #img1{
-           position:absolute;
-           top: 0;
-           left: 0;
-           cursor: pointer;
-       }
-        #img2{
+        img{
+            border:0
+        }
+        #container{
             position: relative;
-            left: 410px;
+        }
+        #big{
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 0;
+            left: 400px;
+            overflow: hidden;
+            display: none;
+        }
+        #drag{
+            width: 200px;
+            height: 200px;
+            background: #cccccc;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: .5;
+            filter: alpha(opacity=50);
+            display: none;
+        }
+        #small{
+            width: 400px;
+            height: 400px;
+            position:relative;
+        }
+        #mask{
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #ff0000;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+        #big-img{
+            position: absolute;
+            top: 0;
+            left: 0;
         }
     </style>
 </head>
 <body>
-    <div id="imgs">
-        <img id="img1" src="img/6.jpg" />
-        <img id="img2" src="img/5.jpg" />
+    <div id="container">
+        <div id="small">
+            <img src="img/6.jpg" >
+            <div id="drag"></div>
+            <div id="mask"></div>
+        </div>
+        <div id="big">
+            <img src="img/5.jpg" id="big-img">
+        </div>
     </div>
 <script>
-    var oImg1 = document.getElementById(img1);
-    var oImg2 = document.getElementById(img2);
-//    oImg1.onmousemove = function(){
-//        oImg1.style.displiy='block;'
+    var oBig = document.getElementById("big"),
+        oSmall = document.getElementById("small"),
+        oDrag = document.getElementById("drag"),
+        oBigImg = document.getElementById("big-img"),
+        oMask = document.getElementById("mask");
+    oMask.onmouseover = function(){
+        oDrag.style.display = "block";
+        oBig.style.display = "block";
+    };
+    oMask.onmouseout = function(){
+        oDrag.style.display = "none";
+        oBig.style.display = "none";
+    };
+    oMask.onmousemove = function(e){
+        e = e || window.event;
+        //限定drag的四个方向的移动范围
+        var left = e.clientX - oDrag.offsetWidth / 2;
+        var top = e.clientY - oDrag.offsetHeight / 2;
+        if(left < 0){
+            left = 0
+        }
+        var iDisX = oSmall.offsetWidth - oDrag.offsetWidth;
+        if(left > iDisX){
+            left = iDisX;
+        }
+        if(top < 0){
+            top = 0;
+        }
+        var iDisY = oSmall.offsetHeight - oDrag.offsetHeight;
+        if(top > iDisY){
+            top = iDisY;
+        }
+        oDrag.style.left = left + "px";
+        oDrag.style.top = top + "px";
+
+        /*
+         * 比例关系
+         * */
+        var iScaleX = left / iDisX;
+        var iScaleY = top / iDisY;
+        oBigImg.style.left = -iScaleX * (oBigImg.offsetWidth - oBig.offsetWidth) + "px";
+        oBigImg.style.top = -iScaleY * (oBigImg.offsetHeight - oBig.offsetHeight) + "px";
     }
 </script>
 </body>
